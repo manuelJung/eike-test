@@ -1,4 +1,6 @@
 import type { GatsbyConfig } from "gatsby"
+import getProducts from './server/get-products'
+
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -10,6 +12,9 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [],
+  developMiddleware: app => {
+    app.get('/api/products/:locale', getProducts)
+  },
 }
 
 export default config
