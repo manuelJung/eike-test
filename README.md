@@ -1,49 +1,38 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal TypeScript Starter
-</h1>
+# Tasks
 
-## 🚀 Quick start
+Hier ein paar Aufgaben damit wir einen kleinen Einblick in deine Fähigkeiten bekommen. Nach unserem Erstgespräch habe ich den Eindruck, dass du von den Fähigkeiten durchaus sehr fortgeschritten bist, deswegen ist der Schwierigkeitsgrad hier durchaus etwas gehoben (zwischen Senior und und Staff). 
 
-1.  **Create a Gatsby site.**
+Du musst nicht alle aufgaben lösen (die dritte ist nicht einfach) und jetzt auch nicht all zu viel zeit darin versenken. mir geht es in erster linie mal auszutesten wo deine grenzen sind und wie sicher du dich durch die Frontend-Architektur bewegst. Wenn etwas unklar ist, schreib mir einfach eine email. ich bin zu jeder tages und nachtzeit zu erreichen ;) 
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+## Komponenten bauen in einem statischen Kontext
 
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby -- -ts
-    ```
+unter `/api/products/de-de` bekommst du eine liste von produkten. du kannst den request über query-params modifizieren:
 
-2.  **Start developing.**
+- `hpp=5` sorgt dafür, dass du insgesamt 5 hits-per-page zurück gekommst
+- `page=2` kann die aktuelle page festlegen (startet bei 0)
 
-    Navigate into your new site’s directory and start it up.
+baue unter der route `/` einen product-slider wie hier:
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+<img src='./assets/slider-example.png'>
 
-3.  **Open the code and start customizing!**
+das design ist mir egal und darauf lege ich keinen wert. du kannst hier selber entscheiden wie detailiert du das angehen willst. z.b könntest du folgende features hinzufügen:
 
-    Your site is now running at http://localhost:8000!
+- der initiale slider soll bereits statisch gerendert werden können
+- es werden nicht alle produkte auf einmal dargestellt, sonder es wird nachgefetched wenn der user weiter scrolled
+- es gibt einen custom scroll-indicator
+- ...
 
-    Edit `src/pages/index.tsx` to see your site update in real-time!
+überleg dir ein paar features (du musst nicht die obigen nehmen). mir geht es hier vor allem darum ein gefühl zu bekommen wie tief die verständnis für gatsby, typescript und react hast
 
-4.  **Learn more**
+## Software-Architektur
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+unter `config/de-de/index.ts` und `config/en-us/index.ts` liegen die länderspeziefischen Konfigurationen. da die liste der länder und die Größe jeder config-datei schnell sehr groß werden kann macht es keinen sinn, alle Konfigurationen in jede land zu laden. statdessen soll eine technik entwickelt werden, welche nur die jeweilige länderkonfig läd und möglichst einfach von jeder komponente aus importiert werden kann. hier soll es am schluss 4 scripts geben:
 
-## 🚀 Quick start (Netlify)
+- `npm run start:de-de` startet die app mit der deutschen config
+- `npm run start:en-us` startet den shop mit der englischen config
+- `npm run build:de-de` baut die app mit der deutschen config
+- `npm run build:en-us` baut den shop mit der englischen config
 
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
+## Think-outside-the-box
 
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+Jedes Produkt hat einen b2b und einen b2c preis. wie könnte man am besten einen b2b/b2c toggle in die UI einbauen welcher bei klick die korrekten preise anzeigt. Evt sogar dass es auf eine statische weiße funktioniert (wenn ich den browser reloade soll bereits beim initialen laden das richtige angezeigt werden)
